@@ -1,0 +1,31 @@
+# currency_converter.py
+
+conversion_rates = {
+    "EUR": 0.85,
+    "GBP": 0.75,
+    "INR": 74.57,
+    "AUD": 1.34,
+    "CAD": 1.25,
+    "JPY": 110.57,
+    "CNY": 6.47,
+    # Add more currencies and their conversion rates here
+}
+
+def usd_to_currency(amount, currency):
+    rate = conversion_rates.get(currency)
+    if rate:
+        return amount * rate
+    else:
+        return "Currency not supported"
+
+def main():
+    amount = float(input("Enter amount in USD: "))
+    currency = input("Enter the currency code to convert to: ").upper()
+    result = usd_to_currency(amount, currency)
+    if isinstance(result, str):
+        print(result)
+    else:
+        print(f"{amount} USD is equal to {result} {currency}")
+
+if __name__ == "__main__":
+    main()
