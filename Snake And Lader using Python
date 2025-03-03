@@ -1,0 +1,48 @@
+class ChessBoard:
+    def __init__(self):
+        self.board = self.create_board()
+        self.turn = 'White'
+
+    def create_board(self):
+        board = [[' ' for _ in range(8)] for _ in range(8)]
+        for i in range(8):
+            board[1][i] = 'P'
+            board[6][i] = 'p'
+        pieces = ['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R']
+        for i in range(8):
+            board[0][i] = pieces[i]
+            board[7][i] = pieces[i].lower()
+        return board
+
+    def print_board(self):
+        for row in self.board:
+            print(' '.join(row))
+        print()
+
+    def move_piece(self, start, end):
+        start_x, start_y = start
+        end_x, end_y = end
+        self.board[end_x][end_y] = self.board[start_x][start_y]
+        self.board[start_x][start_y] = ' '
+
+    def play_game(self):
+        self.print_board()
+        moves = [
+            ((6, 4), (4, 4)),  # e2 to e4
+            ((1, 4), (3, 4)),  # e7 to e5
+            ((7, 6), (5, 5)),  # Nf3 to Nc3
+            ((0, 1), (2, 2)),  # Nb8 to Nc6
+            ((7, 5), (4, 2)),  # Bf1 to Bc4
+            ((0, 3), (4, 7)),  # Qd8 to h4
+            ((7, 3), (3, 7)),  # Qd1 to h5
+            ((4, 7), (4, 2))   # Qh4 to Bc4 (Checkmate)
+        ]
+        for move in moves:
+            self.move_piece(*move)
+            self.print_board()
+            self.turn = 'Black' if self.turn == 'White' else 'White'
+        print("Checkmate! Black wins.")
+
+if __name__ == "__main__":
+    game = ChessBoard()
+    game.play_game()
