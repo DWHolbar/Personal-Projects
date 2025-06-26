@@ -1,8 +1,3 @@
-# Project: Weather CLI App
-# Description: A simple command-line interface (CLI) application that fetches and displays weather information for a given city using a public API.
-
-import requests
-
 def get_weather(city):
     api_key = "your_api_key_here"  # Replace with your API key from OpenWeatherMap or similar service
     base_url = "http://api.openweathermap.org/data/2.5/weather"
